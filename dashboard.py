@@ -70,6 +70,5 @@ if st.session_state.show_chatbot:
             </div>
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
             
-                </div>
            
     """, unsafe_allow_html=True)
