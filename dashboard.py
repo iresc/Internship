@@ -69,38 +69,5 @@ if st.session_state.show_chatbot:
                 </div>
             </div>
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-            <button onclick="sendMessage()" style="border: none; background-color: #4CAF50; color: gray; padding: 10px; width: 100%; cursor: pointer;">
-                Invia
-            </button>
-        </div>
-        <script>
-            function sendMessage() {
-                let userInput = document.getElementById("user-input").value;
-                if (userInput.trim() === "") return;
-
-                let chatContent = document.getElementById("chat-content");
-                let userMessage = document.createElement("div");
-                userMessage.style.marginBottom = "10px";
-                userMessage.style.padding = "5px";
-                userMessage.style.backgroundColor = "#f1f1f1";
-                userMessage.style.borderRadius = "5px";
-                userMessage.textContent = "Tu: " + userInput;
-                chatContent.appendChild(userMessage);
-
-                // Simuliamo una risposta del chatbot
-                let botMessage = document.createElement("div");
-                botMessage.style.marginBottom = "10px";
-                botMessage.style.padding = "5px";
-                botMessage.style.backgroundColor = "#e2e2e2";
-                botMessage.style.borderRadius = "5px";
-                botMessage.textContent = "Bot: Risposta automatica!";
-                chatContent.appendChild(botMessage);
-
-                // Pulisci il campo di input
-                document.getElementById("user-input").value = "";
-
-                // Scrolla fino in fondo
-                chatContent.scrollTop = chatContent.scrollHeight;
-            }
-        </script>
+        </div>    
     """, unsafe_allow_html=True)
