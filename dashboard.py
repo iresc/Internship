@@ -56,7 +56,7 @@ if "show_chatbot" not in st.session_state:
     st.session_state.show_chatbot = False
 
 # Pulsante per aprire/chiudere la finestra del chatbot
-if st.button('Apri/Chiudi Chatbot'):
+if st.button('Conversa con il Chatbot'):
     st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
 
 # Aggiungi il chatbot solo se la variabile è True
