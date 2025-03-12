@@ -35,5 +35,6 @@ if st.sidebar.button('Filtra'):
         (df["Storage"] >= selectbox_storages) &
         (df["Final Price"].between(add_slider[0], add_slider[1]))
     ]
+    st.dataframe(df)
     
    
