@@ -51,3 +51,53 @@ st.header('Trova il laptop più adatto alle tue esigenze')
 st.markdown('---')
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
+
+# Pulsante per mostrare la finestra del chatbot
+if st.button('Apri Chatbot'):
+    st.session_state.show_chatbot = True
+
+# Aggiungi il chatbot solo se è stato premuto il pulsante
+if 'show_chatbot' in st.session_state and st.session_state.show_chatbot:
+    st.markdown("""
+        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: white; border-radius: 8px; display: flex; flex-direction: column;">
+            <div style="flex: 1; padding: 10px; overflow-y: auto;">
+                <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
+                    <!-- Messaggi del chatbot saranno inseriti qui -->
+                </div>
+            </div>
+            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
+            <button onclick="sendMessage()" style="border: none; background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer;">
+                Invia
+            </button>
+        </div>
+        <script>
+            function sendMessage() {
+                let userInput = document.getElementById("user-input").value;
+                if (userInput.trim() === "") return;
+
+                let chatContent = document.getElementById("chat-content");
+                let userMessage = document.createElement("div");
+                userMessage.style.marginBottom = "10px";
+                userMessage.style.padding = "5px";
+                userMessage.style.backgroundColor = "#f1f1f1";
+                userMessage.style.borderRadius = "5px";
+                userMessage.textContent = "Tu: " + userInput;
+                chatContent.appendChild(userMessage);
+
+                // Simuliamo una risposta del chatbot
+                let botMessage = document.createElement("div");
+                botMessage.style.marginBottom = "10px";
+                botMessage.style.padding = "5px";
+                botMessage.style.backgroundColor = "#e2e2e2";
+                botMessage.style.borderRadius = "5px";
+                botMessage.textContent = "Bot: Risposta automatica!";
+                chatContent.appendChild(botMessage);
+
+                // Pulisci il campo di input
+                document.getElementById("user-input").value = "";
+
+                // Scrolla fino in fondo
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+        </script>
+    """, unsafe_allow_html=True)
