@@ -24,4 +24,8 @@ selectbox_ram = st.sidebar.selectbox('Quanta RAM minima?',rams)
 
 selectbox_storages = st.sidebar.selectbox('Quanta ROM minima?',storages)
 
-selectbox_prices = st.sidebar.selectbox('Prezzo massimo?',prices)
+add_slider = st.sidebar.slider(
+    'Seleziona range di prezzo',
+    0.0, 100.0, (25.0, 75.0),
+    key = 'range_prezzo'
+)
