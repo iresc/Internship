@@ -46,17 +46,14 @@ if st.sidebar.button('Filtra'):
 if st.sidebar.button('Resetta i filtri'):
     st.session_state.dff = df
 
+
 st.header('Trova il laptop più adatto alle tue esigenze')
 st.markdown('---')
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
 
-# Inizializza lo stato del chatbot se non esiste
 if "show_chatbot" not in st.session_state:
     st.session_state.show_chatbot = False
-
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
 
 # Pulsante per aprire/chiudere la finestra del chatbot
 if st.button('Conversa con il Chatbot'):
@@ -72,19 +69,7 @@ if st.session_state.show_chatbot:
                 </div>
             </div>
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-        </div>
+            
+                </div>
+           
     """, unsafe_allow_html=True)
-
-    # Input dell'utente
-    user_input = st.text_input("Scrivi un messaggio...", key="user_input", on_change=lambda: st.session_state.chat_history.append(f"Tu: {st.session_state.user_input}"))
-
-    # Aggiungi il messaggio dell'utente alla cronologia della chat
-    if user_input:
-        st.session_state.chat_history.append(f"Tu: {user_input}")
-        # Simula una risposta del chatbot
-        st.session_state.chat_history.append("Bot: Risposta automatica!")
-
-    # Mostra la cronologia della chat
-    st.markdown("### Chat History")
-    for message in st.session_state.chat_history:
-        st.markdown(message)
