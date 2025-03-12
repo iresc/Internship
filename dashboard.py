@@ -68,7 +68,7 @@ if st.session_state.show_chatbot:
                     Ciao! Come posso aiutarti?
                 </div>
             </div>
-                <form onSubmit="scrivi()">
+                <form onSubmit="return scrivi()">
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
                 </form>
                 </div>
