@@ -25,4 +25,3 @@ st.write(df.describe())
 st.subheader("GPU - Prezzo")
 st.scatter_chart(df, x="GPU", y="Final Price")
 
-'Mi piace la matematica'
