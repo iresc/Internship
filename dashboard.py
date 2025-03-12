@@ -9,7 +9,7 @@ brands = df["Brand"].unique().tolist() ## estrai valori unici di brand dal dataf
 
 statuses = df["Status"].unique().tolist() ## estrai valori unici di stato
 
-rams = df["Ram"].unique().tolist() ## estrai valori unici di ram
+rams = df["RAM"].unique().tolist() ## estrai valori unici di ram
 
 storages = df["Storage"].unique().tolist() ## estrai valori unici di storage
 
