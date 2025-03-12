@@ -26,6 +26,6 @@ selectbox_storages = st.sidebar.selectbox('Quanta ROM minima?',storages)
 
 add_slider = st.sidebar.slider(
     'Seleziona range di prezzo',
-    0.0, 100.0, (25.0, 75.0),
+    0.0, max(prices), (0.0, 50.0),
     key = 'range_prezzo'
 )
