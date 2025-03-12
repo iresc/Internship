@@ -43,6 +43,10 @@ if st.sidebar.button('Filtra'):
         (df["Final Price"].between(min_price, max_price))
     ]
 
+if st.sidebar.button('Resetta i filtri'):
+    st.session_state.dff = df
+
+
 st.header('Trova il laptop più adatto alle tue esigenze')
 st.markdown('---')
 # Mostra il DataFrame aggiornato
