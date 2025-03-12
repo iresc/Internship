@@ -44,6 +44,6 @@ if st.sidebar.button('Filtra'):
     ]
 
 st.header('Trova il laptop più adatto alle tue esigenze')
-
+st.markdown('---')
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
