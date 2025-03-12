@@ -5,6 +5,6 @@ df = pd.read_csv("laptops.csv") ## dataframe con dati laptop
 
 st.dataframe(df)
 
-brands = df["brand"].unique().tolist() ## estrai valori unici di brand dal dataframe
+brands = df["Brand"].unique().tolist() ## estrai valori unici di brand dal dataframe
 
 selectbox_marca = st.sidebar.selectbox('Scegli una marca',brands)
