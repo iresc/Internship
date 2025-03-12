@@ -68,14 +68,33 @@ if st.session_state.show_chatbot:
                     Ciao! Come posso aiutarti?
                 </div>
             </div>
-                <form onSubmit="return scrivi()">
-            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-                </form>
-                </div>
-            <script>
-                function scrivi(){
-                event.preventDefault();
-                document.getElementById("chat-content").value = document.getElementById("chat-content").value + "document.getElementById("user-input").value"
-                }
-                </script>
+                 <form onsubmit="return scrivi()">
+        <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
+    </form>
+</div>
+
+<script>
+    function scrivi(event){
+        // Impedisce il comportamento di invio del modulo (evita il ricaricamento)
+        event.preventDefault();
+
+        // Ottieni il messaggio inserito dall'utente
+        let userMessage = document.getElementById("user-input").value;
+
+        // Se l'input non è vuoto, aggiungi il messaggio al contenuto della chat
+        if(userMessage.trim() !== "") {
+            let chatContent = document.getElementById("chat-content");
+            chatContent.innerHTML += "<div style='margin-bottom: 10px; background-color: #f1f1f1; border-radius: 5px; padding: 5px;'>Tu: " + userMessage + "</div>";
+
+            // Aggiungi una risposta automatica del bot
+            chatContent.innerHTML += "<div style='margin-bottom: 10px; background-color: #e2e2e2; border-radius: 5px; padding: 5px;'>Bot: Risposta automatica!</div>";
+
+            // Scorri automaticamente in basso per visualizzare il nuovo messaggio
+            chatContent.scrollTop = chatContent.scrollHeight;
+
+            // Pulisci il campo di input
+            document.getElementById("user-input").value = "";
+        }
+    }
+</script>
     """, unsafe_allow_html=True)
