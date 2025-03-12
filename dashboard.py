@@ -11,4 +11,4 @@ statuses=df["Status"].unique().tolist() ## estrai valori unici di stato
 
 selectbox_marca = st.sidebar.selectbox('Scegli una marca',brands)
 
-selectbox_stato = st.sidebar.selectbox('In che stato vuoi che sia?',brands)
+selectbox_stato = st.sidebar.selectbox('In che stato vuoi che sia?',statuses)
