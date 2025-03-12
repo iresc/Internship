@@ -65,7 +65,7 @@ if st.session_state.show_chatbot:
         <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
             <div style="flex: 1; padding: 10px; overflow-y: auto;">
                 <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
-                    <!-- Messaggi del chatbot saranno inseriti qui -->
+                    Ciao! Come posso aiutarti?
                 </div>
             </div>
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
