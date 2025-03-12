@@ -9,9 +9,9 @@ brands = df["Brand"].unique().tolist() ## estrai valori unici di brand dal dataf
 
 statuses = df["Status"].unique().tolist() ## estrai valori unici di stato
 
-rams = df["RAM"].unique().tolist().sort() ## estrai valori unici di ram
+rams = sorted(df["RAM"].unique().tolist()) ## estrai valori unici di ram
 
-storages = df["Storage"].unique().tolist().sort() ## estrai valori unici di storage
+storages = sorted(df["Storage"].unique().tolist()) ## estrai valori unici di storage
 
 
 selectbox_marca = st.sidebar.selectbox('Scegli una marca',brands)
