@@ -26,4 +26,15 @@ selectbox_storages = st.sidebar.selectbox('Quanta ROM minima?',storages)
 
 add_slider = st.sidebar.slider( 'Seleziona range di prezzo',0.0, max(prices),(0.0, 3500.0),key = 'range_prezzo')
 
-st.sidebar.button('Filtra')
+if st.sidebar.button('Filtra'):
+    # Filtra il DataFrame in base ai parametri selezionati
+    filtered_df = df[
+        (df["Brand"] == selectbox_marca) &
+        (df["Status"] == selectbox_stato) &
+        (df["RAM"] >= selectbox_ram) &
+        (df["Storage"] >= selectbox_storages) &
+        (df["Final Price"].between(add_slider[0], add_slider[1]))
+    ]
+    
+    # Mostra il DataFrame filtrato a destra
+    st.dataframe(filtered_df)
