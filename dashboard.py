@@ -68,6 +68,13 @@ if st.session_state.show_chatbot:
                     Ciao! Come posso aiutarti?
                 </div>
             </div>
+                <form onSubmit="scrivi()">
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-        </div>    
+                </form>
+                </div>
+            <script>
+                function scrivi(){
+                document.getElementById("chat-content").value = document.getElementById("chat-content").value + "document.getElementById("user-input").value"
+                }
+                </script>
     """, unsafe_allow_html=True)
