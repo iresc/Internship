@@ -55,7 +55,7 @@ st.dataframe(st.session_state.dff)
 # Pulsante per mostrare la finestra del chatbot
 if st.button('Apri Chatbot'):
     st.session_state.show_chatbot = True
-else 
+else :
     st.session_state.show_chatbot = False
 
 # Aggiungi il chatbot solo se è stato premuto il pulsante
