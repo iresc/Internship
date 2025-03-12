@@ -52,14 +52,15 @@ st.markdown('---')
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
 
-# Pulsante per mostrare la finestra del chatbot
-if st.button('Apri Chatbot'):
-    st.session_state.show_chatbot = True
-else :
+if "show_chatbot" not in st.session_state:
     st.session_state.show_chatbot = False
 
-# Aggiungi il chatbot solo se è stato premuto il pulsante
-if 'show_chatbot' in st.session_state and st.session_state.show_chatbot:
+# Pulsante per aprire/chiudere la finestra del chatbot
+if st.button('Apri/Chiudi Chatbot'):
+    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
+
+# Aggiungi il chatbot solo se la variabile è True
+if st.session_state.show_chatbot:
     st.markdown("""
         <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: white; border-radius: 8px; display: flex; flex-direction: column;">
             <div style="flex: 1; padding: 10px; overflow-y: auto;">
