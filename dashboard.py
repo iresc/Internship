@@ -25,11 +25,11 @@ selectbox_ram = st.sidebar.selectbox('Quanta RAM minima?',rams)
 
 selectbox_storages = st.sidebar.selectbox('Quanta ROM minima?',storages)
 
-add_slider = st.sidebar.slider( 'Seleziona range di prezzo',0.0, max(prices),(0.0, 3500.0),key = 'range_prezzo')
+add_slider = st.sidebar.slider( 'Seleziona range di prezzo',0.0, max(prices),(0.0, 3500.0),key = 'range_prezzo') ## da fare a fasce
 
 # Bottone per applicare il filtro
 if st.sidebar.button('Filtra'):
-    st.session_state.dff = st.session_state.dff[
+    st.session_state.dff = df[
         (st.session_state.dff["Brand"] == selectbox_marca) &
         (st.session_state.dff["Status"] == selectbox_stato) &
         (st.session_state.dff["RAM"] >= selectbox_ram) &
