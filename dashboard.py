@@ -30,11 +30,11 @@ add_slider = st.sidebar.slider( 'Seleziona range di prezzo',0.0, max(prices),(0.
 # Bottone per applicare il filtro
 if st.sidebar.button('Filtra'):
     st.session_state.dff = df[
-        (st.session_state.dff["Brand"] == selectbox_marca) &
-        (st.session_state.dff["Status"] == selectbox_stato) &
-        (st.session_state.dff["RAM"] >= selectbox_ram) &
-        (st.session_state.dff["Storage"] >= selectbox_storages) &
-        (st.session_state.dff["Final Price"].between(add_slider[0], add_slider[1]))
+        (df["Brand"] == selectbox_marca) &
+        (df["Status"] == selectbox_stato) &
+        (df["RAM"] >= selectbox_ram) &
+        (df["Storage"] >= selectbox_storages) &
+        (df["Final Price"].between(add_slider[0], add_slider[1]))
     ]
 
 # Mostra il DataFrame aggiornato
