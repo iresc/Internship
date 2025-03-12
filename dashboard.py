@@ -62,7 +62,7 @@ if st.button('Conversa con i Chatbot'):
 # Aggiungi il chatbot solo se la variabile è True
 if st.session_state.show_chatbot:
     st.markdown("""
-        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: gray; border-radius: 8px; display: flex; flex-direction: column;">
+        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
             <div style="flex: 1; padding: 10px; overflow-y: auto;">
                 <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
                     <!-- Messaggi del chatbot saranno inseriti qui -->
