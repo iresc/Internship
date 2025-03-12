@@ -56,7 +56,7 @@ if "show_chatbot" not in st.session_state:
     st.session_state.show_chatbot = False
 
 # Pulsante per aprire/chiudere la finestra del chatbot
-if st.button('Conversa con il Chatbot'):
+if st.button('Conversa con i Chatbot'):
     st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
 
 # Aggiungi il chatbot solo se la variabile è True
@@ -69,7 +69,7 @@ if st.session_state.show_chatbot:
                 </div>
             </div>
             <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-            <button onclick="sendMessage()" style="border: none; background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer;">
+            <button onclick="sendMessage()" style="border: none; background-color: #4CAF50; color: gray; padding: 10px; width: 100%; cursor: pointer;">
                 Invia
             </button>
         </div>
