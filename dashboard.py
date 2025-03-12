@@ -13,6 +13,8 @@ rams = sorted(df["RAM"].unique().tolist()) ## estrai valori unici di ram
 
 storages = sorted(df["Storage"].unique().tolist()) ## estrai valori unici di storage
 
+prices = sorted(df["Final Price"].unique().tolist()) ## estrai prezzi unici
+
 
 selectbox_marca = st.sidebar.selectbox('Scegli una marca',brands)
 
@@ -22,3 +24,4 @@ selectbox_ram = st.sidebar.selectbox('Quanta RAM minima?',rams)
 
 selectbox_storages = st.sidebar.selectbox('Quanta ROM minima?',storages)
 
+selectbox_prices = st.sidebar.selectbox('Prezzo massimo?',prices)
