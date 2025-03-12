@@ -29,7 +29,7 @@ add_slider = st.sidebar.slider( 'Seleziona range di prezzo',0.0, max(prices),(0.
 
 # Bottone per applicare il filtro
 if st.sidebar.button('Filtra'):
-    st.session_state.dff = st.session_state.df[
+    st.session_state.dff = st.session_state.dff[
         (st.session_state.dff["Brand"] == selectbox_marca) &
         (st.session_state.dff["Status"] == selectbox_stato) &
         (st.session_state.dff["RAM"] >= selectbox_ram) &
