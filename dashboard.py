@@ -74,6 +74,7 @@ if st.session_state.show_chatbot:
                 </div>
             <script>
                 function scrivi(){
+                event.preventDefault();
                 document.getElementById("chat-content").value = document.getElementById("chat-content").value + "document.getElementById("user-input").value"
                 }
                 </script>
