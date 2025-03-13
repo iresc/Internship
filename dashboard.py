@@ -1,30 +1,13 @@
 import streamlit as st
 import pandas as pd
 
-
-# Assegna un ID univoco tramite JavaScript
 st.markdown("""
-    <script>
-        var buttons = window.parent.document.querySelectorAll('button');
-        buttons.forEach(btn => {
-            if (btn.innerText === 'Mio Bottone') {
-                btn.id = 'custom-button';
-            }
-        });
-    </script>
-    <style>
-        #custom-button {
-            background-color: purple !important;
-            color: white !important;
-            border-radius: 20px;
-            font-size: 22px;
-            padding: 14px 28px;
-            border: 3px solid white;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+<style>
+   button {
+      background-color: blueviolet; 
+   }
+</style>
+""", unsafe_allow_html=True)
 
 # Pulsante da personalizzare
 st.button("Mio Bottone")
