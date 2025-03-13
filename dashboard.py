@@ -57,23 +57,45 @@ st.markdown('---')                                             # barra orizzonta
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
 
-if "show_chatbot" not in st.session_state:
-    st.session_state.show_chatbot = False
+#if "show_chatbot" not in st.session_state:
+#    st.session_state.show_chatbot = False
 
 # Pulsante per aprire/chiudere la finestra del chatbot
-if st.button('Conversa con il Chatbot'):
-    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
+#if st.button('Conversa con il Chatbot'):
+#    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
 
 # Aggiungi il chatbot solo se la variabile è True
-if st.session_state.show_chatbot:
-    st.markdown("""
-        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
-            <div style="flex: 1; padding: 10px; overflow-y: auto;">
-                <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
-                    Ciao! Come posso aiutarti?
-                </div>
-            </div>
-            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">
-            
-           
-    """, unsafe_allow_html=True)
+#if st.session_state.show_chatbot:
+#    st.markdown("""
+#        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
+#            <div style="flex: 1; padding: 10px; overflow-y: auto;">
+#               <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
+#                    Ciao! Come posso aiutarti?
+#               </div>
+#            </div>
+#            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">        
+#    """, unsafe_allow_html=True)
+
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# React to user input
+if prompt := st.chat_input("What is up?"):
+    # Display user message in chat message container
+    st.chat_message("user").markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    response = f"Echo: {prompt}"
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": response})
