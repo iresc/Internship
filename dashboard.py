@@ -66,7 +66,7 @@ def response_generator():
         [
             "Ciao! Come posso aiutarti oggi?",
             "Benvenuto nella chatbox! C'è qualcosa con cui posso aiutarti?",
-            "🤖 C I A O ! Dimmi, di cosa hai bisogno?",
+            "🤖 C-I-A-O ! \nDimmi, di cosa hai bisogno?",
             "Mi dispiace ma il chatbot è ancora in produzione 😢⚒⚠",
         ]
     )
