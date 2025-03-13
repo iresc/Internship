@@ -1,7 +1,18 @@
 import streamlit as st
 import pandas as pd
 
+st.markdown("""
+<style>
+  
+    .st-emotion-cache-b0y9n5 {
+        background-color: green;
+    }
+            
 
+}
+</style>
+
+""", unsafe_allow_html=True)
 
 # Pulsante da personalizzare
 st.button("Mio Bottone",key="b8ne")
@@ -82,17 +93,3 @@ if st.session_state.show_chatbot:
             
            
     """, unsafe_allow_html=True)
-
-
-
-    st.markdown("""
-<script>
-document.querySelectorAll("button").forEach(button => {
-    const p = button.querySelector("div p");
-    if (p && p.textContent.includes("Mio Bottone")) {
-        button.style.backgroundColor = "yellow"; // Applica lo stile
-    }
-});                
-</script>
-
-""", unsafe_allow_html=True)
