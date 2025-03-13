@@ -55,28 +55,6 @@ if st.sidebar.button('Resetta i filtri'):
 
 st.header('✨Trova il laptop più adatto alle tue esigenze✨') # titolo
 st.markdown('---')                                             # barra orizzontale
-# Mostra il DataFrame aggiornato
-st.dataframe(st.session_state.dff)
-
-#if "show_chatbot" not in st.session_state:
-#    st.session_state.show_chatbot = False
-
-# Pulsante per aprire/chiudere la finestra del chatbot
-#if st.button('Conversa con il Chatbot'):
-#    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
-
-# Aggiungi il chatbot solo se la variabile è True
-#if st.session_state.show_chatbot:
-#    st.markdown("""
-#        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
-#            <div style="flex: 1; padding: 10px; overflow-y: auto;">
-#               <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
-#                    Ciao! Come posso aiutarti?
-#               </div>
-#            </div>
-#            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">        
-#    """, unsafe_allow_html=True)
-
 
 
 
@@ -117,3 +95,31 @@ if prompt := st.chat_input("Fammi una domanda..."):
         response = st.write_stream(response_generator())
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
+
+
+
+
+# Mostra il DataFrame aggiornato
+st.dataframe(st.session_state.dff)
+
+#if "show_chatbot" not in st.session_state:
+#    st.session_state.show_chatbot = False
+
+# Pulsante per aprire/chiudere la finestra del chatbot
+#if st.button('Conversa con il Chatbot'):
+#    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
+
+# Aggiungi il chatbot solo se la variabile è True
+#if st.session_state.show_chatbot:
+#    st.markdown("""
+#        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
+#            <div style="flex: 1; padding: 10px; overflow-y: auto;">
+#               <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
+#                    Ciao! Come posso aiutarti?
+#               </div>
+#            </div>
+#            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">        
+#    """, unsafe_allow_html=True)
+
+
+
