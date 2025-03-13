@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import OpenAI 
+from openai import OpenAI
 
 
 # Carica il DataFrame iniziale solo una volta
