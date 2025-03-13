@@ -6,12 +6,13 @@ st.markdown("""
    button:hover {
         color: blueviolet; 
    }
-    .st-emotion-cache-b0y9n5 {
-        background-color: green;
-    }
-</style>
+    
             
-<button>premimi</button>
+    .st-emotion-cache-b0y9n5:has(div p:contains("Mio Bottone")) {
+    background-color: yellow; /* Cambia lo stile del button */
+}
+</style>
+
 """, unsafe_allow_html=True)
 
 # Pulsante da personalizzare
