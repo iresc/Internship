@@ -71,7 +71,7 @@ def response_generator():
         ]
     )
     for word in list(response):
-        yield word + " "
+        yield word + ""
         time.sleep(0.5)
 
 # Initialize chat history
