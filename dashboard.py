@@ -3,8 +3,8 @@ import pandas as pd
 
 st.markdown("""
 <style>
-   button {
-      background-color: blueviolet; 
+   button:hover {
+      color: blueviolet; 
    }
 </style>
 """, unsafe_allow_html=True)
