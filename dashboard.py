@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
-import random
-import time
-
+from openai import OpenAI
 
 
 
@@ -59,43 +57,38 @@ st.markdown('---')                                             # barra orizzonta
 
 
 
-# Streamed response emulator
 
-def response_generator():
-    response = random.choice(
-        [
-            "Ciao! Come posso aiutarti oggi?",
-            "Benvenuto nella chatbox! C'è qualcosa con cui posso aiutarti?",
-            "🤖 C I A O ! Dimmi, di cosa hai bisogno?",
-        ]
-    )
-    for word in response.split():
-        yield word + " "
-        time.sleep(0.1)
 
-# Initialize chat history
+st.title("ChatGPT-like clone")
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Accept user input
-if prompt := st.chat_input("Fammi una domanda..."):
-    # Add user message to chat history
+if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        response = st.write_stream(response_generator())
-    # Add assistant response to chat history
+        stream = client.chat.completions.create(
+            model=st.session_state["openai_model"],
+            messages=[
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ],
+            stream=True,
+        )
+        response = st.write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
-
 
 
 
