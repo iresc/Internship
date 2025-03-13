@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
-from openai import OpenAI
+import random
+import time
+
+
 
 
 # Carica il DataFrame iniziale solo una volta
@@ -52,65 +55,43 @@ if st.sidebar.button('Resetta i filtri'):
 
 st.header('✨Trova il laptop più adatto alle tue esigenze✨') # titolo
 st.markdown('---')                                             # barra orizzontale
+# Mostra il DataFrame aggiornato
+st.dataframe(st.session_state.dff)
 
 
+# Streamed response emulator
 
+def response_generator():
+    response = random.choice(
+        [
+            "Ciao! Come posso aiutarti oggi?",
+            "Benvenuto nella chatbox! C'è qualcosa con cui posso aiutarti?",
+            "🤖 C I A O ! Dimmi, di cosa hai bisogno?",
+        ]
+    )
+    for word in response.split():
+        yield word + " "
+        time.sleep(0.1)
 
-
-
-
-#client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
-
+# Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("What is up?"):
+# Accept user input
+if prompt := st.chat_input("Fammi una domanda..."):
+    # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
+    # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        stream = client.chat.completions.create(
-            model=st.session_state["openai_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
-            stream=True,
-        )
-        response = st.write_stream(stream)
+        response = st.write_stream(response_generator())
+    # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
-
-
-
-# Mostra il DataFrame aggiornato
-st.dataframe(st.session_state.dff)
-
-#if "show_chatbot" not in st.session_state:
-#    st.session_state.show_chatbot = False
-
-# Pulsante per aprire/chiudere la finestra del chatbot
-#if st.button('Conversa con il Chatbot'):
-#    st.session_state.show_chatbot = not st.session_state.show_chatbot  # Inverte lo stato
-
-# Aggiungi il chatbot solo se la variabile è True
-#if st.session_state.show_chatbot:
-#    st.markdown("""
-#        <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; border: 2px solid #ccc; background-color: rgb(14, 17, 23); border-radius: 8px; display: flex; flex-direction: column;">
-#            <div style="flex: 1; padding: 10px; overflow-y: auto;">
-#               <div id="chat-content" style="max-height: 90%; overflow-y: scroll;">
-#                    Ciao! Come posso aiutarti?
-#               </div>
-#            </div>
-#            <input id="user-input" type="text" placeholder="Scrivi un messaggio..." style="border: none; padding: 10px; width: 100%; box-sizing: border-box;">        
-#    """, unsafe_allow_html=True)
-
-
-
