@@ -1,22 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-st.markdown("""
-<style>
-  
-    .st-emotion-cache-b0y9n5 {
-        background-color: green;
-    }
-            
-
-}
-</style>
-
-""", unsafe_allow_html=True)
-
-# Pulsante da personalizzare
-st.button("Mio Bottone",key="b8ne")
-st.button("Altro Bottone")
 
 
 
