@@ -9,7 +9,7 @@ def load_css(file_path):
 css_path = pathlib.Path("style.css")
 load_css(css_path)
 
-st.button("premimi!",key="pulsantolo")
+st.button("premimi!", key="pulsantolo")
 
 # Carica il DataFrame iniziale solo una volta
 if "dff" not in st.session_state:
