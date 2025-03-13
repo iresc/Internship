@@ -7,6 +7,8 @@ st.markdown("""
       color: blueviolet; 
    }
 </style>
+            
+<button>premimi</button>
 """, unsafe_allow_html=True)
 
 # Pulsante da personalizzare
