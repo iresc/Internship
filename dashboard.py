@@ -70,7 +70,7 @@ def response_generator():
             "⚠ chatbot ancora in produzione ⚠",
         ]
     )
-    for word in response.split(""):
+    for word in list(response):
         yield word + " "
         time.sleep(0.5)
 
