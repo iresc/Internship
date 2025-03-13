@@ -2,16 +2,14 @@ import streamlit as st
 import pandas as pd
 
 st.markdown("""
-<style>
-   button:hover {
-        color: blueviolet; 
-   }
-    
-            
-    .st-emotion-cache-b0y9n5:has(div p:contains("Mio Bottone")) {
-    background-color: yellow; /* Cambia lo stile del button */
-}
-</style>
+<script>
+document.querySelectorAll("button").forEach(button => {
+    const p = button.querySelector("div p");
+    if (p && p.textContent.includes("Mio Bottone")) {
+        button.style.backgroundColor = "yellow"; // Applica lo stile
+    }
+});                
+</script>
 
 """, unsafe_allow_html=True)
 
