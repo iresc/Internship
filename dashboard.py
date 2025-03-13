@@ -72,7 +72,7 @@ def response_generator():
     )
     for word in response.split():
         yield word + " "
-        time.sleep(0.1)
+        time.sleep(0.5)
 
 # Initialize chat history
 if "messages" not in st.session_state:
