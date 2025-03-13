@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-
+import random
+import time
 
 
 
@@ -77,6 +78,23 @@ st.dataframe(st.session_state.dff)
 #    """, unsafe_allow_html=True)
 
 
+
+
+
+# Streamed response emulator
+
+def response_generator():
+    response = random.choice(
+        [
+            "Ciao! Come posso aiutarti oggi?",
+            "Benvenuto nella chatbox! C'è qualcosa con cui posso aiutarti?",
+            "🤖 C I A O ! Dimmi, di cosa hai bisogno?",
+        ]
+    )
+    for word in response.split():
+        yield word + " "
+        time.sleep(0.05)
+
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -86,16 +104,16 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# React to user input
-if prompt := st.chat_input("Come posso aiutarti?"):
-    # Display user message in chat message container
-    st.chat_message("user").markdown(prompt)
+# Accept user input
+if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
+    # Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
-    response = f"Bot:  *Mi sto interfacciando con GPT...*"
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.markdown(response)
+        response = st.write_stream(response_generator())
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
