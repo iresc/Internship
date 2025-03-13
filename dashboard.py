@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import random
 import time
+from random import randrange
 
 
 
@@ -72,7 +73,7 @@ def response_generator():
     )
     for word in list(response):
         yield word + ""
-        time.sleep(0.5)
+        time.sleep(randrange(7)/10)
 
 # Initialize chat history
 if "messages" not in st.session_state:
