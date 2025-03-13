@@ -4,7 +4,21 @@ import random
 import time
 from random import randrange
 
+st.markdown("""
+    <style>
+        .st-emotion-cache-janbn0 {
+            margin-left: 60%;
+        }
+    
 
+        .st-emotion-cache-4oy321{
+            background-color: rgba(38, 39, 48, 0.5);
+            margin-right: 50%;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # Carica il DataFrame iniziale solo una volta
@@ -60,8 +74,10 @@ st.markdown('---')                                             # barra orizzonta
 st.dataframe(st.session_state.dff)
 
 
-# Streamed response emulator
 
+
+
+# Streamed response emulator
 def response_generator():
     response = random.choice(
         [
@@ -73,7 +89,7 @@ def response_generator():
     )
     for word in list(response):
         yield word + ""
-        time.sleep(randrange(7)/10)
+        time.sleep(randrange(2)/10)
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -97,3 +113,4 @@ if prompt := st.chat_input("Fammi una domanda..."):
         response = st.write_stream(response_generator())
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
+
