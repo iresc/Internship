@@ -2,14 +2,36 @@ import streamlit as st
 import pandas as pd
 import pathlib 
 
-def load_css(file_path):
-    with open(file_path) as f:
-        st.html("<style>{f.read}</style>")
+# Assegna un ID univoco tramite JavaScript
+st.markdown("""
+    <script>
+        var buttons = window.parent.document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            if (btn.innerText === 'Mio Bottone') {
+                btn.id = 'custom-button';
+            }
+        });
+    </script>
+    <style>
+        #custom-button {
+            background-color: purple !important;
+            color: white !important;
+            border-radius: 20px;
+            font-size: 22px;
+            padding: 14px 28px;
+            border: 3px solid white;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-css_path = pathlib.Path("Styles/style.css")
-load_css(css_path)
+# Pulsante da personalizzare
+st.button("Mio Bottone")
+st.button("Altro Bottone")
 
-st.button("premimi!", key="pulsantolo")
+
+
 
 # Carica il DataFrame iniziale solo una volta
 if "dff" not in st.session_state:
