@@ -1,5 +1,15 @@
 import streamlit as st
 import pandas as pd
+import pathlib 
+
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read}</style>")
+
+css_path = pathlib.Path("style.css")
+load_css(css_path)
+
+st.button("premimi!",key="pulsantolo")
 
 # Carica il DataFrame iniziale solo una volta
 if "dff" not in st.session_state:
@@ -43,12 +53,13 @@ if st.sidebar.button('Filtra'):
         (df["Final Price"].between(min_price, max_price))
     ]
 
+# bottone per resettare i filtri
 if st.sidebar.button('Resetta i filtri'):
     st.session_state.dff = df
 
 
-st.header('Trova il laptop più adatto alle tue esigenze')
-st.markdown('---')
+st.header('✨Trova il laptop più adatto alle tue esigenze✨') # titolo
+st.markdown('---')                                             # barra orizzontale
 # Mostra il DataFrame aggiornato
 st.dataframe(st.session_state.dff)
 
