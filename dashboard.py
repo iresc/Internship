@@ -93,7 +93,7 @@ if prompt := st.chat_input("Come posso aiutarti?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    response = f"Bot:  Inserire risposta AI generated"
+    response = f"Bot:  *Mi sto interfacciando con GPT...*"
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)
