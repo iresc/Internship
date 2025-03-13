@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pathlib 
+
 
 # Assegna un ID univoco tramite JavaScript
 st.markdown("""
