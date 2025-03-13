@@ -4,18 +4,18 @@ import pandas as pd
 st.markdown("""
 <style>
    button:hover {
-      color: blueviolet; 
+        color: blueviolet; 
    }
     .st-emotion-cache-b0y9n5 {
-            background-color: green;
-            }
+        background-color: green;
+    }
 </style>
             
 <button>premimi</button>
 """, unsafe_allow_html=True)
 
 # Pulsante da personalizzare
-st.button("Mio Bottone")
+st.button("Mio Bottone",key="b8ne")
 st.button("Altro Bottone")
 
 
