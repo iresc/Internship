@@ -3,6 +3,7 @@ import pandas as pd
 import random
 import time
 from random import randrange
+#from streamlit_gsheets import GSheetsConnection
 
 st.markdown("""
     <style>
@@ -20,6 +21,8 @@ st.markdown("""
     unsafe_allow_html=True
 )
 
+#conn = st.connection("gsheets", type=GSheetsConnection)
+#df = conn.read()
 
 # Carica il DataFrame iniziale solo una volta
 if "dff" not in st.session_state:
