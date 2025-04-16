@@ -21,14 +21,15 @@ st.markdown("""
     unsafe_allow_html=True
 )
 
-#conn = st.connection("gsheets", type=GSheetsConnection)
-#df = conn.read()
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Carica il DataFrame iniziale solo una volta
 if "dff" not in st.session_state:
-    st.session_state.dff = pd.read_csv("laptops.csv")
+#    st.session_state.dff = pd.read_csv("laptops.csv")
+     st.session_state.dff = conn.read
 
-df = pd.read_csv("laptops.csv")  # Carica il DataFrame
+#df = pd.read_csv("laptops.csv")  # Carica il DataFrame
+df = conn.read()
 
 # Estrai valori unici dalle colonne
 brands = df["Brand"].unique().tolist()
