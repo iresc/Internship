@@ -3,7 +3,15 @@ import pandas as pd
 import random
 import time
 from random import randrange
-from streamlit_gsheets import GSheetsConnection
+
+@st.cache_data
+def load_data(url):
+    return pd.read_csv(url)
+
+url_panels = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=100113349"
+url_inverters = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=2099613343"
+url_storage = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=633719834"
+
 
 st.markdown("""
     <style>
@@ -21,15 +29,17 @@ st.markdown("""
     unsafe_allow_html=True
 )
 
-conn = st.connection("gsheets", type=GSheetsConnection)
+
 
 # Carica il DataFrame iniziale solo una volta
-if "dff" not in st.session_state:
+#if "dff" not in st.session_state:
 #    st.session_state.dff = pd.read_csv("laptops.csv")
-     st.session_state.dff = conn.read()
+#     st.session_state.dff = pd.read_csv(url)
 
 #df = pd.read_csv("laptops.csv")  # Carica il DataFrame
-df = conn.read()
+df_panels = load_data(url_panels)
+df_inverters = load_data(url_inverters)
+df_storage = load_data(url_storage)
 
 
 # Estrai valori unici dalle colonne
@@ -71,15 +81,18 @@ df = conn.read()
 # bottone per resettare i filtri
 #if st.sidebar.button('Resetta i filtri'):
 #    st.session_state.dff = df
+ 
 
+st.header("Componenti per impianto fotovoltaico")
+st.markdown('---')
+st.subheader("Pannelli Solari")
+st.dataframe(df_panels)
 
-st.header('Title placeholder') # titolo
-st.markdown('---')                                             # barra orizzontale
-# Mostra il DataFrame aggiornato
-st.dataframe(st.session_state.dff)
+st.subheader("Inverter")
+st.dataframe(df_inverters)
 
-
-
+st.subheader("Batterie di Accumulo")
+st.dataframe(df_storage)
 
 
 # Streamed response emulator
