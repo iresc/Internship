@@ -8,9 +8,11 @@ from random import randrange
 def load_data(url):
     return pd.read_csv(url)
 
-url_panels = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=100113349"
-url_inverters = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=2099613343"
-url_storage = "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=633719834"
+url_map = {
+    "Pannelli": "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=100113349",
+    "Inverter": "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=2099613343",
+    "Batterie": "https://docs.google.com/spreadsheets/d/14WfndX8cj9YejXvBTuQP-GoXpiuMLRv7ptXCFA3MTY8/export?format=csv&gid=633719834",
+}
 
 
 st.markdown("""
@@ -37,9 +39,6 @@ st.markdown("""
 #     st.session_state.dff = pd.read_csv(url)
 
 #df = pd.read_csv("laptops.csv")  # Carica il DataFrame
-df_panels = load_data(url_panels)
-df_inverters = load_data(url_inverters)
-df_storage = load_data(url_storage)
 
 
 # Estrai valori unici dalle colonne
@@ -81,18 +80,15 @@ df_storage = load_data(url_storage)
 # bottone per resettare i filtri
 #if st.sidebar.button('Resetta i filtri'):
 #    st.session_state.dff = df
- 
 
-st.header("Componenti per impianto fotovoltaico")
+
+st.header("Impianti fotovoltaici - selezione componenti")
+chosen_sheet = st.selectbox("Scegli la categoria da visualizzare:", list(url_map.keys()))
+
 st.markdown('---')
-st.subheader("Pannelli Solari")
-st.dataframe(df_panels)
-
-st.subheader("Inverter")
-st.dataframe(df_inverters)
-
-st.subheader("Batterie di Accumulo")
-st.dataframe(df_storage)
+df = load_data(url_map[chosen_sheet])
+st.subheader(f"📋 {chosen_sheet}")
+st.dataframe(df)
 
 
 # Streamed response emulator
