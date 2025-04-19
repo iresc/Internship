@@ -90,6 +90,49 @@ df = load_data(url_map[chosen_sheet])
 st.subheader(f"📋 {chosen_sheet}")
 st.dataframe(df)
 
+df_panels = load_data(url_map["Pannelli"])
+st.title("⚡ Selezione del Modulo Fotovoltaico")
+# Costruisci una colonna con identificatore univoco leggibile
+df_panels["identifier"] = df_panels.apply(
+    lambda row: f"{row['Company Name']} - {row['Series Name']} - {row['Model Name']} - {row['Model ID']}",
+    axis=1
+)
+# Selectbox con tutti i pannelli unici
+chosen_panel_str = st.selectbox("Scegli il pannello:", df_panels["identifier"])
+# Recupera i dati del pannello scelto
+panel_data = df_panels[df_panels["identifier"] == chosen_panel_str].squeeze()
+
+st.markdown("### ℹ️ Dettagli pannello selezionato")
+st.write(panel_data)
+
+# === Inserimento numero moduli
+n_modules = st.number_input("🔢 Inserisci il numero di moduli:", min_value=1, max_value=100, step=1)
+
+# === Calcoli (da completare da te)
+if st.button("🔍 Calcola combinazioni con inverter compatibili"):
+    st.markdown("## 🧮 Calcoli in corso...")
+
+    # 👉 Qui inserirai la tua logica: es. potenza_tot = moduli * potenza_unitaria
+    # E filtrerai df_inverter per compatibilità (es: range di potenza supportata)
+
+    #potenza_pannello = panel_data.get("Potenza (W)", 0)
+    #potenza_totale = potenza_pannello * n_modules
+
+    #st.write(f"📦 Potenza totale impianto: **{potenza_totale} W**")
+
+    # === ESEMPIO: filtriamo inverter compatibili
+    #inverter_compatibili = df_inverter[
+    #    (df_inverter["Potenza Min (W)"] <= potenza_totale) &
+    #    (df_inverter["Potenza Max (W)"] >= potenza_totale)
+    #]
+
+    #if not inverter_compatibili.empty:
+    #    st.success("✅ Inverter compatibili trovati!")
+    #    st.dataframe(inverter_compatibili)
+    #else:
+    #    st.warning("⚠️ Nessun inverter compatibile trovato per questa potenza.")
+
+
 
 # Streamed response emulator
 def response_generator():
