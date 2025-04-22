@@ -4,8 +4,6 @@ import random
 import time
 from random import randrange
 
-st.title("Consulta il catalogo")
-
 @st.cache_data
 def load_data(url):
     return pd.read_csv(url)
